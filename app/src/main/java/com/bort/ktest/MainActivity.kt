@@ -1,6 +1,5 @@
 package com.bort.ktest
 
-import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import java.util.*
@@ -26,26 +25,137 @@ class MainActivity : AppCompatActivity() {
 
     class car(val color: String, var windows:Int){
         //this class has color and windows attributes
+        var tires: Int ? = null
+
+        fun settires(t:Int){
+            tires = t
+        }
     }
+
     //
 
     //class w/ constructor
 
-    class Node{
-        private var value: Int ? = null
-        //private lateinit var value1: Int
+//    class Node(var root: Int){
+//        var leftchild: Int ? = null
+//        var rightchild: Int ? = null
+//    }
 
+    class Node(var root: Int){
+
+        var leftchild: Int ? = null
+        var rightchild: Int ? = null
+
+//        fun setleftchild( x: Int){
+//            leftchild = x
+//        }
+//        fun setleftchild( x: Int){
+//            leftchild = x
+//        }
+    }
+
+    class Node1(
+            var key: Int,
+            var left: Node1 ? = null,
+            var right: Node1 ? = null){
+
+        init{}
+
+        fun setleft(y:Int){
+            left = Node1(3)
+        }
     }
 
 
+    class Node2(fName: String, personAge: Int) {
+        val firstName: String
+        var age: Int
+
+        // initializer block
+        init {
+            firstName = fName.capitalize()
+            age = personAge
+
+            println("First Name = $firstName")
+            println("Age = $age")
+        }
+    }
+
+    class Node3(var root:Int, var left:Node3 ? = null, var right:Node3 ? = null)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
         //example object
-        val truck = car("blue", 4)
-        println("car object color: $truck.color")
+        var truck = car("blue", 4)
+        println("car object color: " + truck.color)
+        truck.settires(5)
+        println("car object tires: " + truck.tires)
+
+    //BINARY TREE
+        var zero = Node3(0)
+        var one = Node3(1)
+        var two = Node3(2)
+        var four = Node3(4)
+        var five = Node3(5)
+        var tree = Node3(3)
+
+        //Binary Tree - preorder traversal
+        tree.left = four
+        tree.right = five
+        four.left = zero
+        four.right = one
+        five.left = two
+
+        var nodetest2 = Node2("bort", 99)
+        nodetest2.age = 69
+        println("nodetest age" + nodetest2.age)
+        println("nodetest firstName" + nodetest2.firstName)
+
+        var node3 = Node3(5)
+        println("Node3 root:" + node3.root);
+        println("Node3 left:" + node3.left);
+        println("Node3 right:" + node3.right);
+
+        //node3.left = 99
+        //node3.right = 98
+        println("Node3 root:" + node3.root);
+        println("Node3 left:" + node3.left);
+        println("Node3 right:" + node3.right);
+
+        //preorder traversal
+        fun preordertraversal(node:Node3 ?){
+            if(node?.root != null){
+                println("preorder traversal: " + node?.root)
+                preordertraversal(node?.left)
+                preordertraversal(node?.right)
+            }
+        }
+
+        preordertraversal(tree)
+
+        //postorder traversal
+        fun postordertraversal(node:Node3 ?){
+            if(node?.root != null){
+                postordertraversal((node.left))
+                postordertraversal(node.right)
+                println("postorder traversal: " + node?.root)
+            }
+        }
+
+        postordertraversal(tree)
+
+        fun addNode(current: Node3 ?, value: Int){
+
+            if(current.root == null){
+
+            }
+
+            if(value < current.root){
+                addNode(current.left, 3)
+            }
+        }
 
 
 
@@ -175,10 +285,10 @@ class MainActivity : AppCompatActivity() {
         printArray1(listm)
 
         //quicksort
-        var ar3 = intArrayOf(8,4,7,6,2,1,3,9,5)
-        println("quicksort")
-        quicksort(ar3,0,ar3.size-1)
-        printArray1(ar3)
+//        var ar3 = intArrayOf(8,4,7,6,2,1,3,9,5)
+//        println("quicksort")
+//        quicksort(ar3,0,ar3.size-1)
+//        printArray1(ar3)
 
 
 
